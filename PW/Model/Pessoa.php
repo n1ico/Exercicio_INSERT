@@ -1,7 +1,7 @@
 <?php
-
+// importa os arquivos da pasta "Controller" com prioridade no "conexao.php" 
 require_once '../Controller/conexao.php';
-
+// classe Pessoa e variáveis privadas 
 class Pessoa{
     private $id;
     private $nome;
@@ -14,7 +14,8 @@ class Pessoa{
     private $celular;
     private $conexao;
 
-    
+// get e sets das variáveis privadas com retorno das informações coletadas    
+
     public function getId(){
         return $this->id;
     }
@@ -89,8 +90,9 @@ class Pessoa{
     public function __construct(){
         $this->conexao = new Conexao;
     }
-
+// método inserir 
     public function inserir(){
+//insere os gets nos atributos da entidade cliente
         $sql = "INSERT INTO cliente(`nome`, `endereco`, `bairro`, `cidade`, `cep`, `estado`, `telefone`, `celular` ) VALUES(?,?,?,?,?,?,?,?)";
         $stmt = $this->conexao->getConexao()->prepare($sql);
         $stmt->bind_param('ssssssss', $this->nome, $this->nome, $this->bairro, $this->cidade, $this->cep, $this->estado, $this->telefone, $this->celular);
